@@ -1,0 +1,30 @@
+{
+  "etudiants": [
+    {
+      "id": 1,
+      "nom": "Dupont",
+      "prenom": "Jean",
+      "sexe": "M"
+    },
+    {
+      "id": 2,
+      "nom": "Martin",
+      "prenom": "Sophie",
+      "sexe": "W"
+    }
+  ],
+  "actions": [
+    {
+      "id": 1,
+      "action": "E",
+      "horaire": "2024-03-24 14:30:00",
+      "id_etu": 1
+    },
+    {
+      "id": 2,
+      "action": "H",
+      "horaire": "2024-03-24 15:00:00",
+      "id_etu": 2
+    }
+  ]
+}
