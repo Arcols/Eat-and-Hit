@@ -1,8 +1,11 @@
 import 'dart:io';
 import 'dart:convert';
-import 'package:eat_and_hit/readjson.dart';
+import 'package:eat_and_hit/fonctions/readjson.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:eat_and_hit/Vue/DetailsEleves.dart';
+import 'package:eat_and_hit/Widgets/HitWidget.dart';
+import 'package:eat_and_hit/Widgets/EatWidget.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Contacts App',
+      title: 'Eat & Hit',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -37,7 +40,6 @@ class _ContactListPageState extends State<ContactListPage> {
       setState(() {
         // charger les données au lancement de l'application
         data = loadedData;
-        print("Données chargées: $data");
       });
     });
   }
@@ -50,7 +52,7 @@ class _ContactListPageState extends State<ContactListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Contacts'),
+        title: Text('Eat & Hit'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add_circle),
@@ -65,29 +67,7 @@ class _ContactListPageState extends State<ContactListPage> {
               child: ListView.builder( // construit la liste dynamiquement en fonction du nombre d'étudiants
                 itemCount: data.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                    leading: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => APIDetailView(data[index]),
-                          ),
-                        );
-                      },
-                      child: CircleAvatar(
-                        backgroundColor: Colors.blue,
-                        backgroundImage: Image.asset("assets/images/prout.png").image,
-                      ),
-                    ),
-                    title: Row(
-                      children: <Widget>[
-                        Expanded(child: Text(data[index]["Nom"])) ,
-                        Expanded(child: Text(data[index]["Prenom"])) ,
-                        Expanded(child: Text(data[index]["Sexe"])) ,
-                      ],
-                    ),
-                  );
+                  return LigneEleve(data: data, index: index);
                 },
               ),
             ),
@@ -98,25 +78,48 @@ class _ContactListPageState extends State<ContactListPage> {
   }
 }
 
-class APIDetailView extends StatelessWidget {
-  final Map<String, dynamic> contact;
-  APIDetailView(this.contact);
+
+// a passer en statefull pour les smileys
+class LigneEleve extends StatelessWidget {
+  const LigneEleve({
+    super.key,
+    required this.data,
+    required this.index,
+  });
+
+  final List<Map<String, dynamic>> data;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Contact Details")),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text("First Name: ${contact["Nom"]}", style: TextStyle(fontSize: 18)),
-            Text("Last Name: ${contact["Prenom"]}", style: TextStyle(fontSize: 18)),
-            Text("Sexe: ${contact["Sexe"]}", style: TextStyle(fontSize: 18)),
-          ],
+    return ListTile(
+      leading: InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Detailseleves(data[index]),
+            ),
+          );
+        },
+        child: CircleAvatar(
+          backgroundColor: Colors.blue,
+          backgroundImage: Image.asset("assets/images/prout.png").image,
         ),
+      ),
+      title: Row(
+        children: <Widget>[
+          Expanded(child: Text(data[index]["Nom"])) ,
+          Expanded(child: Text(data[index]["Prenom"])) ,
+          EatWidget(),
+          HitWidget(),
+        ],
       ),
     );
   }
 }
+
+
+
+
+
