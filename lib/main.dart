@@ -37,6 +37,7 @@ class _ContactListPageState extends State<ContactListPage> {
       setState(() {
         // charger les données au lancement de l'application
         data = loadedData;
+        print("Données chargées: $data");
       });
     });
   }
@@ -75,15 +76,15 @@ class _ContactListPageState extends State<ContactListPage> {
                         );
                       },
                       child: CircleAvatar(
-                        backgroundColor: Colors.blue, // Optionnel si l'image ne charge pas
-                        backgroundImage: AssetImage("assets/images/schémapouri.png") // Image depuis une URL
+                        backgroundColor: Colors.blue,
+                        backgroundImage: Image.asset("assets/images/prout.png").image,
                       ),
                     ),
                     title: Row(
                       children: <Widget>[
-                        Expanded(child: Text(data[index]["nom"])) ,
-                        Expanded(child: Text(data[index]["prenom"])) ,
-                        Expanded(child: Text(data[index]["sexe"])) ,
+                        Expanded(child: Text(data[index]["Nom"])) ,
+                        Expanded(child: Text(data[index]["Prenom"])) ,
+                        Expanded(child: Text(data[index]["Sexe"])) ,
                       ],
                     ),
                   );
@@ -112,7 +113,7 @@ class APIDetailView extends StatelessWidget {
           children: <Widget>[
             Text("First Name: ${contact["Nom"]}", style: TextStyle(fontSize: 18)),
             Text("Last Name: ${contact["Prenom"]}", style: TextStyle(fontSize: 18)),
-            Text("Shit: ${contact["Sexe"]}", style: TextStyle(fontSize: 18)),
+            Text("Sexe: ${contact["Sexe"]}", style: TextStyle(fontSize: 18)),
           ],
         ),
       ),
