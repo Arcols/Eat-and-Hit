@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:convert';
+import 'package:eat_and_hit/readjson.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 
@@ -27,10 +28,18 @@ class ContactListPage extends StatefulWidget {
 }
 
 class _ContactListPageState extends State<ContactListPage> {
-  List<Map<String, dynamic>> data = [
-    {"FirstName": "John", "LastName": "Doe", "Bill_City": "New York", "Customer_Id": "12345"},
-    {"FirstName": "Jane", "LastName": "Smith", "Bill_City": "Los Angeles", "Customer_Id": "67890"},
-  ];
+  List<Map<String, dynamic>> data = [];
+
+  @override
+  void initState() {
+    super.initState();
+    loadData().then((loadedData) {
+      setState(() {
+        // charger les données au lancement de l'application
+        data = loadedData;
+      });
+    });
+  }
 
   void addEtudiant() {
     // Fonction pour récupérer des données (ajouter la logique ici)
@@ -55,28 +64,27 @@ class _ContactListPageState extends State<ContactListPage> {
               child: ListView.builder( // construit la liste dynamiquement en fonction du nombre d'étudiants
                 itemCount: data.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return InkWell( // rend l'élément clicable
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => APIDetailView(data[index]),
-                        ),
-                      );
-                    },
-                    child: ListTile(
-                      leading: CircleAvatar(
-                        backgroundColor: Colors.blue,
-                        child: Text(data[index]["FirstName"][0]),
+                  return ListTile(
+                    leading: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => APIDetailView(data[index]),
+                          ),
+                        );
+                      },
+                      child: CircleAvatar(
+                        backgroundColor: Colors.blue, // Optionnel si l'image ne charge pas
+                        backgroundImage: AssetImage("assets/images/schémapouri.png") // Image depuis une URL
                       ),
-                      title: Row(
-                        children: <Widget>[
-                          Expanded(child: Text(data[index]["FirstName"])) ,
-                          Expanded(child: Text(data[index]["LastName"])) ,
-                          Expanded(child: Text(data[index]["Bill_City"])) ,
-                          Expanded(child: Text(data[index]["Customer_Id"])) ,
-                        ],
-                      ),
+                    ),
+                    title: Row(
+                      children: <Widget>[
+                        Expanded(child: Text(data[index]["nom"])) ,
+                        Expanded(child: Text(data[index]["prenom"])) ,
+                        Expanded(child: Text(data[index]["sexe"])) ,
+                      ],
                     ),
                   );
                 },
@@ -102,10 +110,9 @@ class APIDetailView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text("First Name: ${contact["FirstName"]}", style: TextStyle(fontSize: 18)),
-            Text("Last Name: ${contact["LastName"]}", style: TextStyle(fontSize: 18)),
-            Text("City: ${contact["Bill_City"]}", style: TextStyle(fontSize: 18)),
-            Text("Customer ID: ${contact["Customer_Id"]}", style: TextStyle(fontSize: 18)),
+            Text("First Name: ${contact["Nom"]}", style: TextStyle(fontSize: 18)),
+            Text("Last Name: ${contact["Prenom"]}", style: TextStyle(fontSize: 18)),
+            Text("Shit: ${contact["Sexe"]}", style: TextStyle(fontSize: 18)),
           ],
         ),
       ),
