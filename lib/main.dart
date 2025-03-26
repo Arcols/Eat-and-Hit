@@ -7,7 +7,11 @@ import 'package:eat_and_hit/Vue/DetailsEleves.dart';
 import 'package:eat_and_hit/Widgets/HitWidget.dart';
 import 'package:eat_and_hit/Widgets/EatWidget.dart';
 
-void main() {
+import 'fonctions/dataFonctions.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initializeJsonFile(); // Initialiser le fichier JSON local car assets est un dossier immuable
   runApp(MyApp());
 }
 
@@ -111,8 +115,8 @@ class LigneEleve extends StatelessWidget {
         children: <Widget>[
           Expanded(child: Text(data[index]["Nom"])) ,
           Expanded(child: Text(data[index]["Prenom"])) ,
-          EatWidget(),
-          HitWidget(),
+          EatWidget(data[index]["ID"]),
+          HitWidget(data[index]["ID"]),
         ],
       ),
     );

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../fonctions/dataFonctions.dart';
+
 class HitWidget extends StatelessWidget {
-  const HitWidget({
-    super.key,
-  });
+  final int id;
+
+  const HitWidget(this.id, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,9 @@ class HitWidget extends StatelessWidget {
         height: 50,
         child : Image.asset("assets/images/fist.png"),
       ),
-      onPressed: () { print("caca"); },
+      onPressed: () {
+        addAction("H", DateTime.now(), id);
+      },
     );
   }
 }

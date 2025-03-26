@@ -16,8 +16,8 @@ class Detailseleves extends StatelessWidget {
       appBar: AppBar(
         title: Text(contact["Nom"]+" "+contact["Prenom"]),
         actions: [
-          EatWidget(),
-          HitWidget()
+          EatWidget(contact["ID"]),
+          HitWidget(contact["ID"])
         ],),
       body: Padding(
         padding: EdgeInsets.all(16.0),

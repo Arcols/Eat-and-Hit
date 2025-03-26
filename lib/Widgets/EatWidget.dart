@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:eat_and_hit/fonctions/dataFonctions.dart';
 
 class EatWidget extends StatelessWidget {
-  const EatWidget({
-    super.key,
-  });
+  final int id;
+
+  const EatWidget(this.id, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,9 +12,11 @@ class EatWidget extends StatelessWidget {
       icon: SizedBox(
         width: 50,
         height: 50,
-        child : Image.asset("assets/images/eat.png"),
+        child: Image.asset("assets/images/eat.png"),
       ),
-      onPressed: () { print("Modifier"); },
+      onPressed: () {
+        addAction("E", DateTime.now(), id);
+      },
     );
   }
 }

@@ -3,13 +3,12 @@ import 'package:flutter/services.dart' show rootBundle;
 
 Future<List<Map<String, dynamic>>> loadData() async {
   try {
-    // Lire le fichier JSON depuis assets/data.json
+
+    // Lire le fichier JSON
     String jsonString = await rootBundle.loadString('assets/data.json');
 
-    // Convertir le JSON en Map
     Map<String, dynamic> jsonData = json.decode(jsonString);
 
-    // Récupérer étudiants et actions
     List<Map<String, dynamic>> etudiants = List<Map<String, dynamic>>.from(jsonData["etudiants"]);
     List<Map<String, dynamic>> actions = List<Map<String, dynamic>>.from(jsonData["actions"]);
 
@@ -22,7 +21,7 @@ Future<List<Map<String, dynamic>>> loadData() async {
         "Prenom": etu["prenom"],
         "Nom": etu["nom"],
         "Sexe": etu["sexe"],
-        "ID": etu["id"].toString(),
+        "ID": etu["id"],
         "Actions": etuActions, // Liste des actions associées
       };
     }).toList();
