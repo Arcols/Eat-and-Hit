@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../fonctions/dataFonctions.dart';
 
 class HitWidget extends StatelessWidget {
-  final int id;
+  final Map<String, dynamic> data;
 
-  const HitWidget(this.id, {super.key});
+  const HitWidget(this.data, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,13 @@ class HitWidget extends StatelessWidget {
         child : Image.asset("assets/images/fist.png"),
       ),
       onPressed: () {
-        addAction("H", DateTime.now(), id);
+        addAction("H", DateTime.now(), data["ID"]);
+        var snackBar = SnackBar(
+          content: Text('Vous venez d\'exploser la gueule à '+data["Prenom"]+' '+data["Nom"]+' !'),
+          backgroundColor: Colors.grey,
+          duration: const Duration(seconds: 2),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
       },
     );
   }

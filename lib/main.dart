@@ -114,8 +114,8 @@ class LigneEleve extends StatelessWidget {
         children: <Widget>[
           Expanded(child: Text(data[index]["Nom"])) ,
           Expanded(child: Text(data[index]["Prenom"])) ,
-          EatWidget(data[index]["ID"]),
-          HitWidget(data[index]["ID"]),
+          EatWidget(data[index]),
+          HitWidget(data[index]),
         ],
       ),
     );

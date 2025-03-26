@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:eat_and_hit/fonctions/dataFonctions.dart';
 
 class EatWidget extends StatelessWidget {
-  final int id;
+  final Map<String, dynamic> data;
 
-  const EatWidget(this.id, {super.key});
+  const EatWidget(this.data, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,14 @@ class EatWidget extends StatelessWidget {
         child: Image.asset("assets/images/eat.png"),
       ),
       onPressed: () {
-        addAction("E", DateTime.now(), id);
+        addAction("E", DateTime.now(), data["ID"]);
+
+        var snackBar = SnackBar(
+          content: Text('Vous venez de donner à manger à '+data["Prenom"]+' '+data["Nom"]+' !'),
+          backgroundColor: Colors.grey,
+          duration: const Duration(seconds: 2),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
       },
     );
   }
