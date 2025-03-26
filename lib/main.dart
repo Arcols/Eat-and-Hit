@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:eat_and_hit/Vue/DetailsEleves.dart';
 import 'package:eat_and_hit/Widgets/HitWidget.dart';
 import 'package:eat_and_hit/Widgets/EatWidget.dart';
-
 import 'fonctions/dataFonctions.dart';
 
 Future<void> main() async {

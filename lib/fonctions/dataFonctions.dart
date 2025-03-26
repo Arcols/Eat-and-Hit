@@ -63,17 +63,22 @@ Future<List<dynamic>> getActions() async {
 
 Future<List<Map<String, dynamic>>> loadData() async {
   try {
-
-    // Lire le fichier JSON
     final directory = await getApplicationDocumentsDirectory();
-    String jsonString = await rootBundle.loadString('${directory.path}/data.json');
+    final file = File('${directory.path}/data.json');
 
-    Map<String, dynamic> jsonData = json.decode(jsonString);
+    // Vérifie si le fichier existe avant de tenter de le lire
+    if (!file.existsSync()) {
+      print("Erreur : fichier data.json introuvable !");
+      return [];
+    }
+
+    String jsonString = await file.readAsString();
+    Map<String, dynamic> jsonData = jsonDecode(jsonString);
 
     List<Map<String, dynamic>> etudiants = List<Map<String, dynamic>>.from(jsonData["etudiants"]);
     List<Map<String, dynamic>> actions = List<Map<String, dynamic>>.from(jsonData["actions"]);
 
-    // Associer les actions à chaque étudiant
+    // Associe les actions aux étudiants
     List<Map<String, dynamic>> formattedData = etudiants.map((etu) {
       List<Map<String, dynamic>> etuActions =
       actions.where((act) => act["id_etu"] == etu["id"]).toList();
@@ -93,6 +98,7 @@ Future<List<Map<String, dynamic>>> loadData() async {
     return [];
   }
 }
+
 
 
 Future<String> getImageEtu(int idEtu) async {
