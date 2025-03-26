@@ -11,6 +11,12 @@
       "nom": "Martin",
       "prenom": "Sophie",
       "sexe": "W"
+    },
+    {
+      "id": 3,
+      "nom": "Colson",
+      "prenom": "Arthur",
+      "sexe": "M"
     }
   ],
   "actions": [
@@ -25,6 +31,35 @@
       "action": "H",
       "horaire": "2024-03-24 15:00:00",
       "id_etu": 2
+    },
+    {
+      "id": 3,
+      "action": "E",
+      "horaire": "2024-03-24 15:00:00",
+      "id_etu": 2
+    },{
+      "id": 4,
+      "action": "H",
+      "horaire": "2024-03-24 15:00:00",
+      "id_etu": 2
+    },
+    {
+      "id": 5,
+      "action": "H",
+      "horaire": "2024-03-24 15:00:00",
+      "id_etu": 3
+    },
+    {
+      "id": 6,
+      "action": "E",
+      "horaire": "2024-03-24 15:00:00",
+      "id_etu": 3
+    },{
+      "id": 7,
+      "action": "H",
+      "horaire": "2024-03-24 15:00:00",
+      "id_etu": 3
     }
+
   ]
 }

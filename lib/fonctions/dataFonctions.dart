@@ -50,7 +50,6 @@ Future<List<dynamic>> getActions() async {
   try {
     final directory = await getApplicationDocumentsDirectory();
     final file = File('${directory.path}/data.json');
-
     String content = await file.readAsString();
     Map<String, dynamic> jsonData = jsonDecode(content);
 
@@ -93,3 +92,45 @@ Future<List<Map<String, dynamic>>> loadData() async {
     return [];
   }
 }
+
+
+Future<String> getImageEtu(int idEtu) async {
+  try {
+    // Lire le fichier JSON
+    String jsonString = await rootBundle.loadString('assets/data.json');
+    Map<String, dynamic> jsonData = json.decode(jsonString);
+
+    // Chercher l'étudiant correspondant à l'ID donné
+    var etudiant = jsonData["etudiants"]
+        .firstWhere((etu) => etu["id"] == idEtu, orElse: () => null);
+
+    // Vérifier si l'étudiant existe
+    if (etudiant == null) {
+      print("Étudiant non trouvé !");
+      return "assets/images/prout.png"; // Image par défaut si l'étudiant n'existe pas
+    }
+
+    // Filtrer les actions de l'étudiant avec la bonne condition
+    List actionsEtu = jsonData["actions"].where((action) => action["id_etu"] == idEtu).toList();
+
+    // Compter le nombre d'actions "E" et "H"
+    int countE = actionsEtu.where((action) => action["action"] == "E").length;
+    int countH = actionsEtu.where((action) => action["action"] == "H").length;
+
+    // Récupérer le sexe de l'étudiant
+    String sexe = etudiant["sexe"];
+
+    // Choisir l'image en fonction du nombre d'actions "E" ou "H"
+    if (countE >= countH) {
+      // Si le nombre d'actions "E" est supérieur ou egal au nombre d'actions "H"
+      return sexe == "M" ? "assets/images/heureux.png" : "assets/images/heureuse.png";
+    } else {
+      // Si le nombre d'actions "H" est supérieur au nombre d'actions "E"
+      return sexe == "M" ? "assets/images/angry.png" : "assets/images/grognasse.png";
+    }
+  } catch (e) {
+    print("Erreur lors de la récupération de l'image : $e");
+    return "assets/images/prout.png"; // Image par défaut en cas d'erreur
+  }
+}
+
