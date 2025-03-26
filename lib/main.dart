@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:convert';
-import 'package:eat_and_hit/fonctions/readjson.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:eat_and_hit/Vue/DetailsEleves.dart';
