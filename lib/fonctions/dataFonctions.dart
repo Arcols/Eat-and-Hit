@@ -66,7 +66,8 @@ Future<List<Map<String, dynamic>>> loadData() async {
   try {
 
     // Lire le fichier JSON
-    String jsonString = await rootBundle.loadString('assets/data.json');
+    final directory = await getApplicationDocumentsDirectory();
+    String jsonString = await rootBundle.loadString('${directory.path}/data.json');
 
     Map<String, dynamic> jsonData = json.decode(jsonString);
 

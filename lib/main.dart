@@ -47,6 +47,15 @@ class _ContactListPageState extends State<ContactListPage> {
     });
   }
 
+  void updateState() {
+    loadData().then((loadedData) {
+      setState(() {
+        // charger les données à l'appui sur un bouton
+        data = loadedData;
+      });
+    });
+  }
+
   void addEtudiant() {
     // Fonction pour récupérer des données (ajouter la logique ici)
   }
@@ -70,7 +79,11 @@ class _ContactListPageState extends State<ContactListPage> {
               child: ListView.builder( // construit la liste dynamiquement en fonction du nombre d'étudiants
                 itemCount: data.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return LigneEleve(data: data, index: index);
+                  return LigneEleve(
+                    data: data,
+                    index: index,
+                    onUpdate: updateState,
+                  );
                 },
               ),
             ),
@@ -83,15 +96,25 @@ class _ContactListPageState extends State<ContactListPage> {
 
 
 // a passer en statefull pour les smileys
-class LigneEleve extends StatelessWidget {
+class LigneEleve extends StatefulWidget {
   const LigneEleve({
     super.key,
     required this.data,
     required this.index,
+    required this.onUpdate,
   });
 
   final List<Map<String, dynamic>> data;
   final int index;
+  final VoidCallback onUpdate;
+
+  @override
+  State<LigneEleve> createState() => _LigneEleveState();
+}
+
+class _LigneEleveState extends State<LigneEleve> {
+  get data => widget.data;
+  get index => widget.index;
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +124,7 @@ class LigneEleve extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => Detailseleves(data[index]),
+              builder: (context) => Detailseleves(data[index],widget.onUpdate),
             ),
           );
         },
@@ -114,7 +137,7 @@ class LigneEleve extends StatelessWidget {
         children: <Widget>[
           Expanded(child: Text(data[index]["Nom"])) ,
           Expanded(child: Text(data[index]["Prenom"])) ,
-          EatWidget(data[index]),
+          EatWidget(data[index], onUpdate: widget.onUpdate),
           HitWidget(data[index]),
         ],
       ),

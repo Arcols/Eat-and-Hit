@@ -4,7 +4,9 @@ import 'package:eat_and_hit/fonctions/dataFonctions.dart';
 class EatWidget extends StatelessWidget {
   final Map<String, dynamic> data;
 
-  const EatWidget(this.data, {super.key});
+  final VoidCallback onUpdate;
+
+  const EatWidget(this.data, {required this.onUpdate,super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class EatWidget extends StatelessWidget {
       ),
       onPressed: () {
         addAction("E", DateTime.now(), data["ID"]);
-
+        onUpdate();
         var snackBar = SnackBar(
           content: Text('Vous venez de donner à manger à '+data["Prenom"]+' '+data["Nom"]+' !'),
           backgroundColor: Colors.grey,
