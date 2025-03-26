@@ -106,8 +106,8 @@ class LigneEleve extends StatelessWidget {
           );
         },
         child: CircleAvatar(
-          backgroundColor: Colors.blue,
-          backgroundImage: Image.asset("assets/images/prout.png").image,
+          backgroundColor: Colors.grey,
+          backgroundImage: Image.asset("assets/images/angry.png").image,
         ),
       ),
       title: Row(
