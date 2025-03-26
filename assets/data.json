@@ -11,6 +11,12 @@
       "nom": "Martin",
       "prenom": "Sophie",
       "sexe": "W"
+    },
+    {
+      "id": 3,
+      "nom": "Colson",
+      "prenom": "Arthur",
+      "sexe": "M"
     }
   ],
   "actions": [

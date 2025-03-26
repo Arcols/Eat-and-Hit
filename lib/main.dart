@@ -128,9 +128,26 @@ class _LigneEleveState extends State<LigneEleve> {
             ),
           );
         },
-        child: CircleAvatar(
-          backgroundColor: Colors.grey,
-          backgroundImage: Image.asset("assets/images/angry.png").image,
+        child: FutureBuilder<String>(
+          future: getImageEtu(data[index]["ID"]), // Récupère l'image en fonction de l'ID
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return CircleAvatar(
+                backgroundColor: Colors.grey,
+                child: CircularProgressIndicator(), // Affiche un indicateur de chargement
+              );
+            } else if (snapshot.hasError || !snapshot.hasData) {
+              return CircleAvatar(
+                backgroundColor: Colors.grey,
+                backgroundImage: AssetImage("assets/images/prout.png"), // Image par défaut en cas d'erreur
+              );
+            } else {
+              return CircleAvatar(
+                backgroundColor: Colors.grey,
+                backgroundImage: AssetImage(snapshot.data!), // Image chargée
+              );
+            }
+          },
         ),
       ),
       title: Row(
