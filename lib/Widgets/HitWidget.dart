@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-
-import '../fonctions/dataFonctions.dart';
+import 'package:eat_and_hit/fonctions/dataFonctions.dart';
 
 class HitWidget extends StatelessWidget {
   final Map<String, dynamic> data;
 
-  const HitWidget(this.data, {super.key});
+  final VoidCallback onUpdate;
+
+  const HitWidget(this.data, {required this.onUpdate,super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +18,8 @@ class HitWidget extends StatelessWidget {
       ),
       onPressed: () {
         addAction("H", DateTime.now(), data["ID"]);
-        var snackBar = SnackBar(
-          content: Text('Vous venez d\'exploser la gueule à '+data["Prenom"]+' '+data["Nom"]+' !'),
-          backgroundColor: Colors.grey,
-          duration: const Duration(milliseconds: 1500),
-        );
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        onUpdate();
+
       },
     );
   }

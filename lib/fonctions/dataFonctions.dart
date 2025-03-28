@@ -104,8 +104,15 @@ Future<List<Map<String, dynamic>>> loadData() async {
 
 Future<String> getImageEtu(int idEtu) async {
   try {
-    // Lire le fichier JSON
-    String jsonString = await rootBundle.loadString('assets/data.json');
+    final directory = await getApplicationDocumentsDirectory();
+    final file = File('${directory.path}/data.json'); // Utilisation du bon répertoire
+    if (!file.existsSync()) {
+      print("Fichier data.json introuvable !");
+      return "assets/images/prout.png"; // Image par défaut si le fichier n'existe pas
+    }
+
+    // Lire le fichier JSON local
+    String jsonString = await file.readAsString();
     Map<String, dynamic> jsonData = json.decode(jsonString);
 
     // Chercher l'étudiant correspondant à l'ID donné
@@ -126,12 +133,13 @@ Future<String> getImageEtu(int idEtu) async {
     int countH = actionsEtu.where((action) => action["action"] == "H").length;
     print(countH);
     print(countE);
+
     // Récupérer le sexe de l'étudiant
     String sexe = etudiant["sexe"];
 
     // Choisir l'image en fonction du nombre d'actions "E" ou "H"
     if (countE >= countH) {
-      // Si le nombre d'actions "E" est supérieur ou egal au nombre d'actions "H"
+      // Si le nombre d'actions "E" est supérieur ou égal au nombre d'actions "H"
       return sexe == "M" ? "assets/images/heureux.png" : "assets/images/heureuse.png";
     } else {
       // Si le nombre d'actions "H" est supérieur au nombre d'actions "E"
@@ -142,4 +150,5 @@ Future<String> getImageEtu(int idEtu) async {
     return "assets/images/prout.png"; // Image par défaut en cas d'erreur
   }
 }
+
 

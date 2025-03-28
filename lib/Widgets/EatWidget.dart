@@ -19,12 +19,7 @@ class EatWidget extends StatelessWidget {
       onPressed: () {
         addAction("E", DateTime.now(), data["ID"]);
         onUpdate();
-        var snackBar = SnackBar(
-          content: Text('Vous venez de donner à manger à '+data["Prenom"]+' '+data["Nom"]+' !'),
-          backgroundColor: Colors.grey,
-          duration: const Duration(milliseconds: 1500),
-        );
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
       },
     );
   }

@@ -114,6 +114,19 @@ class LigneEleve extends StatefulWidget {
 class _LigneEleveState extends State<LigneEleve> {
   get data => widget.data;
   get index => widget.index;
+  late String imagePath = "assets/images/prout.png";
+  @override
+  void initState() {
+    super.initState();
+    _loadImage();
+  }
+
+  Future<void> _loadImage() async {
+    String newPath = await getImageEtu(widget.data[widget.index]["ID"]);
+    setState(() {
+      imagePath = newPath;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -127,34 +140,23 @@ class _LigneEleveState extends State<LigneEleve> {
             ),
           );
         },
-        child: FutureBuilder<String>(
-          future: getImageEtu(data[index]["ID"]), // Récupère l'image en fonction de l'ID
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return CircleAvatar(
-                backgroundColor: Colors.grey,
-                child: CircularProgressIndicator(), // Affiche un indicateur de chargement
-              );
-            } else if (snapshot.hasError || !snapshot.hasData) {
-              return CircleAvatar(
-                backgroundColor: Colors.grey,
-                backgroundImage: AssetImage("assets/images/prout.png"), // Image par défaut en cas d'erreur
-              );
-            } else {
-              return CircleAvatar(
-                backgroundColor: Colors.grey,
-                backgroundImage: AssetImage(snapshot.data!), // Image chargée
-              );
-            }
-          },
+        child: CircleAvatar(
+          backgroundColor: Colors.grey,
+          backgroundImage: AssetImage(imagePath),
         ),
       ),
       title: Row(
         children: <Widget>[
           Expanded(child: Text(data[index]["Nom"])) ,
           Expanded(child: Text(data[index]["Prenom"])) ,
-          EatWidget(data[index], onUpdate: widget.onUpdate),
-          HitWidget(data[index]),
+          EatWidget(widget.data[widget.index], onUpdate: () {
+            widget.onUpdate(); // Met à jour la liste complète
+            _loadImage(); // Recharge l’image
+          }),
+          HitWidget(widget.data[widget.index], onUpdate: () {
+            widget.onUpdate(); // Met à jour la liste complète
+            _loadImage(); // Recharge l’image
+          }),
         ],
       ),
     );
