@@ -8,17 +8,17 @@ import '../fonctions/dataFonctions.dart';
 
 class Detailseleves extends StatelessWidget {
 
-  final Map<String, dynamic> contact;
+  final Map<String, dynamic> etudiant;
   final VoidCallback onUpdate;
 
   Detailseleves(
-      this.contact,
+      this.etudiant,
       this.onUpdate,
   );
 
   int getNbFoisNourri(){
     int compteur = 0;
-    List<Map<String,dynamic>> actions= this.contact["Actions"];
+    List<Map<String,dynamic>> actions= this.etudiant["Actions"];
     for(var action in actions){
       if(action["action"]=='E') compteur++;
     }
@@ -26,7 +26,7 @@ class Detailseleves extends StatelessWidget {
   }
   int getNbFoisFrappe(){
     int compteur = 0;
-    List<Map<String,dynamic>> actions= this.contact["Actions"];
+    List<Map<String,dynamic>> actions= this.etudiant["Actions"];
     for(var action in actions){
       if(action["action"]=='H') compteur++;
     }
@@ -37,10 +37,10 @@ class Detailseleves extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(contact["Nom"] + " " + contact["Prenom"]),
+        title: Text(etudiant["Nom"] + " " + etudiant["Prenom"]),
         actions: [
-          EatWidget(contact,onUpdate: onUpdate,),
-          HitWidget(contact),
+          EatWidget(etudiant,onUpdate: onUpdate,),
+          HitWidget(etudiant),
         ],
       ),
       body: Padding(
@@ -51,7 +51,7 @@ class Detailseleves extends StatelessWidget {
             SizedBox(height: 20),
             Center(
               child: FutureBuilder<String>(
-                future: getImageEtu(contact['ID']), // Appelle la fonction avec l'ID de l'étudiant
+                future: getImageEtu(etudiant['ID']), // Appelle la fonction avec l'ID de l'étudiant
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return CircleAvatar(

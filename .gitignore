@@ -32,3 +32,4 @@ doc/api/
 /.idea/libraries
 /.idea/libraries
 .idea/libraries/Dart_SDK.xml
+*.xml
