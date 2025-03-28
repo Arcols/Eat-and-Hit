@@ -4,6 +4,7 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 
+
 /// Écriture du contenu de data.json dans un fichier local du téléphone
 Future<void> initializeJsonFile() async {
   final directory = await getApplicationDocumentsDirectory();
@@ -38,7 +39,7 @@ Future<void> addAction(String action, DateTime date, int idEtu) async {
 
     // Réécrire le contenu mis à jour dans le fichier JSON
     await file.writeAsString(jsonEncode(jsonData));
-
+    print(directory.path);
     print("Nouvelle action ajoutée !");
   } catch (e) {
     print("Erreur : $e");
@@ -123,7 +124,8 @@ Future<String> getImageEtu(int idEtu) async {
     // Compter le nombre d'actions "E" et "H"
     int countE = actionsEtu.where((action) => action["action"] == "E").length;
     int countH = actionsEtu.where((action) => action["action"] == "H").length;
-
+    print(countH);
+    print(countE);
     // Récupérer le sexe de l'étudiant
     String sexe = etudiant["sexe"];
 

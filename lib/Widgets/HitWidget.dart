@@ -20,7 +20,7 @@ class HitWidget extends StatelessWidget {
         var snackBar = SnackBar(
           content: Text('Vous venez d\'exploser la gueule à '+data["Prenom"]+' '+data["Nom"]+' !'),
           backgroundColor: Colors.grey,
-          duration: const Duration(seconds: 2),
+          duration: const Duration(milliseconds: 1500),
         );
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       },
