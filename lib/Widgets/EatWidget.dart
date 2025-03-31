@@ -16,10 +16,12 @@ class EatWidget extends StatelessWidget {
         height: 50,
         child: Image.asset("assets/images/eat.png"),
       ),
-      onPressed: () {
-        addAction("E", DateTime.now(), data["ID"]);
-        onUpdate();
+      onPressed: () async {
+        // Ajout de l'action "H"
+        await addAction("E", DateTime.now(), data["ID"]);
 
+        // Ensuite, met à jour l'état avec onUpdate
+        onUpdate();
       },
     );
   }

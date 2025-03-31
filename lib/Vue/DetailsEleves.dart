@@ -24,7 +24,7 @@ class _DetailselevesState extends State<Detailseleves> {
   void initState() {
     super.initState();
     etudiant = Map.from(widget.initialEtu); // Cloner les données pour les modifier localement
-    imagePath = "assets/images/prout.png"; // Image par défaut
+    imagePath = "assets/images/default.png"; // Image par défaut
     _loadImage(); // Charge l'image initiale
   }
 
@@ -48,26 +48,30 @@ class _DetailselevesState extends State<Detailseleves> {
     return etudiant["Actions"].where((a) => a["action"] == 'H').length;
   }
 
-  void _handleEat() {
+  void _handleEat() async {
     setState(() {
       // Ajouter l'action "E" et mettre à jour immédiatement l'interface
       etudiant["Actions"].add({"action": "E", "date": DateTime.now().toString()});
+      imagePath = "assets/images/loading.png"; // Image temporaire pendant le chargement
     });
 
+    widget.onUpdate(); // Met à jour la liste principale
+
     // Charger l'image après l'action et rafraîchir l'interface
-    widget.onUpdate();
-    _loadImage();
+    await _loadImage();
   }
 
-  void _handleHit() {
+  void _handleHit() async {
     setState(() {
       // Ajouter l'action "H" et mettre à jour immédiatement l'interface
       etudiant["Actions"].add({"action": "H", "date": DateTime.now().toString()});
+      imagePath = "assets/images/loading.png"; // Image temporaire pendant le chargement
     });
 
+    widget.onUpdate(); // Met à jour la liste principale
+
     // Charger l'image après l'action et rafraîchir l'interface
-    widget.onUpdate();
-    _loadImage();
+    await _loadImage();
   }
 
   @override

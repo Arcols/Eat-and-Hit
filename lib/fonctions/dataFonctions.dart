@@ -108,7 +108,7 @@ Future<String> getImageEtu(int idEtu) async {
     final file = File('${directory.path}/data.json'); // Utilisation du bon répertoire
     if (!file.existsSync()) {
       print("Fichier data.json introuvable !");
-      return "assets/images/prout.png"; // Image par défaut si le fichier n'existe pas
+      return "assets/images/default.png"; // Image par défaut si le fichier n'existe pas
     }
 
     // Lire le fichier JSON local
@@ -122,7 +122,7 @@ Future<String> getImageEtu(int idEtu) async {
     // Vérifier si l'étudiant existe
     if (etudiant == null) {
       print("Étudiant non trouvé !");
-      return "assets/images/prout.png"; // Image par défaut si l'étudiant n'existe pas
+      return "assets/images/default.png"; // Image par défaut si l'étudiant n'existe pas
     }
 
     // Filtrer les actions de l'étudiant avec la bonne condition
@@ -147,7 +147,7 @@ Future<String> getImageEtu(int idEtu) async {
     }
   } catch (e) {
     print("Erreur lors de la récupération de l'image : $e");
-    return "assets/images/prout.png"; // Image par défaut en cas d'erreur
+    return "assets/images/default.png"; // Image par défaut en cas d'erreur
   }
 }
 
