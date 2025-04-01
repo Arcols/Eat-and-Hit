@@ -6,6 +6,7 @@ import 'package:eat_and_hit/Vue/DetailsEleves.dart';
 import 'package:eat_and_hit/Widgets/HitWidget.dart';
 import 'package:eat_and_hit/Widgets/EatWidget.dart';
 import 'fonctions/dataFonctions.dart';
+import 'Vue/MonCompte.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -63,13 +64,28 @@ class _ContactListPageState extends State<ContactListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Eat & Hit'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.add_circle),
-            onPressed: addEtudiant,
-          ),
-        ],
+        title: Text("Eat & Hit"),
+      ),
+      drawer: Drawer( // Menu latéral
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(color: Colors.blue),
+              child: Text("Menu", style: TextStyle(color: Colors.white, fontSize: 24)),
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text("Mon Compte"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MonCompte()),
+                );
+              },
+            ),
+          ],
+        ),
       ),
       body: Column(
         children: <Widget>[
