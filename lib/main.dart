@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:eat_and_hit/Vue/DetailsEleves.dart';
 import 'package:eat_and_hit/Widgets/HitWidget.dart';
 import 'package:eat_and_hit/Widgets/EatWidget.dart';
+import 'Vue/addEtudiantPage.dart';
 import 'fonctions/dataFonctions.dart';
 import 'Vue/MonCompte.dart';
 
@@ -50,22 +51,49 @@ class _ContactListPageState extends State<ContactListPage> {
   void updateState() {
     loadData().then((loadedData) {
       setState(() {
-        // charger les données à l'appui sur un bouton
+        // charger les données du tableau
         data = loadedData;
       });
     });
   }
 
 
+
   void addEtudiant() {
     // Fonction pour récupérer des données (ajouter la logique ici)
   }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Eat & Hit"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.add_circle),
+            onPressed: () async {
+              final nomprenom = await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AddEtudiantPage(
+                    onEtudiantAjoute: () {
+                      updateState();
+                    },
+                  ),
+                ),
+              );
+              await Future.delayed(Duration(milliseconds: 300)); // temps d'attente pour que l'étudiant s'affiche sur la liste
+              updateState();
+              var snackBar = SnackBar(
+                content: Text('L\'étudiant '+nomprenom+' a bien été ajouté'),
+                backgroundColor: Colors.grey,
+                duration: const Duration(seconds: 2),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            },
+          ),
+        ],
       ),
       drawer: Drawer( // Menu latéral
         child: ListView(

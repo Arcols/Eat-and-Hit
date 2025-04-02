@@ -46,6 +46,36 @@ Future<void> addAction(String action, DateTime date, int idEtu) async {
   }
 }
 
+Future<void> addEtudiant(String nom, String prenom, String genre,bool bdsm) async {
+  try {
+    // Obtenez le répertoire des documents
+    final directory = await getApplicationDocumentsDirectory();
+    final file = File('${directory.path}/data.json');
+
+    // Lire le contenu actuel du fichier JSON
+    String content = await file.readAsString();
+    Map<String, dynamic> jsonData = jsonDecode(content);
+
+    // Ajouter une nouvelle action
+    Map<String, dynamic> newAction = {
+      "id": jsonData["etudiants"].length + 1,
+      "nom": nom,
+      "prenom": prenom,
+      "sexe": genre,
+      "bdsm": bdsm
+    };
+
+    jsonData["etudiants"].add(newAction);
+
+    // Réécrire le contenu mis à jour dans le fichier JSON
+    await file.writeAsString(jsonEncode(jsonData));
+    print(directory.path);
+    print("Nouvelle action ajoutée !");
+  } catch (e) {
+    print("Erreur : $e");
+  }
+}
+
 /// Charge toutes les actions stockées dans le fichier JSON
 Future<List<dynamic>> getActions() async {
   try {
@@ -89,6 +119,7 @@ Future<List<Map<String, dynamic>>> loadData() async {
         "Nom": etu["nom"],
         "Sexe": etu["sexe"],
         "ID": etu["id"],
+        "bdsm": etu["bdsm"],
         "Actions": etuActions, // Liste des actions associées
       };
     }).toList();
@@ -139,9 +170,15 @@ Future<String> getImageEtu(int idEtu) async {
 
     // Choisir l'image en fonction du nombre d'actions "E" ou "H"
     if (countE >= countH) {
+      if(etudiant["bdsm"]){
+        return sexe == "M" ? "assets/images/angry.png" : "assets/images/grognasse.png";
+      }
       // Si le nombre d'actions "E" est supérieur ou égal au nombre d'actions "H"
       return sexe == "M" ? "assets/images/heureux.png" : "assets/images/heureuse.png";
     } else {
+      if(etudiant["bdsm"]){
+        return sexe == "M" ? "assets/images/heureux.png" : "assets/images/heureuse.png";
+      }
       // Si le nombre d'actions "H" est supérieur au nombre d'actions "E"
       return sexe == "M" ? "assets/images/angry.png" : "assets/images/grognasse.png";
     }
@@ -150,6 +187,20 @@ Future<String> getImageEtu(int idEtu) async {
     return "assets/images/default.png"; // Image par défaut en cas d'erreur
   }
 }
+
+// pour supprimer le fichier de data si jamais il est rempli de nimp / bug
+Future<void> deleteFile() async {
+  final directory = await getApplicationDocumentsDirectory();
+  final file = File('${directory.path}/data.json');
+
+  if (await file.exists()) {
+    await file.delete();
+    print("Fichier supprimé avec succès !");
+  } else {
+    print("Le fichier n'existe pas.");
+  }
+}
+
 
 
 

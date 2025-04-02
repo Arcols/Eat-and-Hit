@@ -4,19 +4,22 @@
       "id": 1,
       "nom": "Dupont",
       "prenom": "Jean",
-      "sexe": "M"
+      "sexe": "M",
+      "bdsm": false
     },
     {
       "id": 2,
       "nom": "Martin",
       "prenom": "Sophie",
-      "sexe": "W"
+      "sexe": "W",
+      "bdsm": false
     },
     {
       "id": 3,
       "nom": "Colson",
       "prenom": "Arthur",
-      "sexe": "M"
+      "sexe": "M",
+      "bdsm": false
     }
   ],
   "actions": [
