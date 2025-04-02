@@ -164,7 +164,7 @@ class _ZoneSaisieState extends State<ZoneSaisie> {
                   String genreString = _genre == genre.M ? 'M' : 'W';
                   addEtudiant(widget.nomController.text, widget.prenomController.text, genreString, bdsm);
                   widget.onEtudiantAjoute();
-                  Navigator.pop(context);
+                  Navigator.pop(context,widget.nomController.text+' '+widget.prenomController.text);
                 }
               },
               child: Text('Ajouter l\'étudiant !'),

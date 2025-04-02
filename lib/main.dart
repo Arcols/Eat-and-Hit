@@ -66,7 +66,7 @@ class _ContactListPageState extends State<ContactListPage> {
           IconButton(
             icon: Icon(Icons.add_circle),
             onPressed: () async {
-              await Navigator.push(
+              final nomprenom = await Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => AddEtudiantPage(
@@ -78,6 +78,12 @@ class _ContactListPageState extends State<ContactListPage> {
               );
               await Future.delayed(Duration(milliseconds: 300)); // temps d'attente pour que l'étudiant s'affiche sur la liste
               updateState();
+              var snackBar = SnackBar(
+                content: Text('L\'étudiant '+nomprenom+' a bien été ajouté'),
+                backgroundColor: Colors.grey,
+                duration: const Duration(seconds: 2),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
             },
           ),
         ],

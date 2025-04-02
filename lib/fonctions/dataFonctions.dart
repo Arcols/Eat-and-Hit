@@ -61,7 +61,8 @@ Future<void> addEtudiant(String nom, String prenom, String genre,bool bdsm) asyn
       "id": jsonData["etudiants"].length + 1,
       "nom": nom,
       "prenom": prenom,
-      "sexe": genre
+      "sexe": genre,
+      "bdsm": bdsm
     };
 
     jsonData["etudiants"].add(newAction);
@@ -118,6 +119,7 @@ Future<List<Map<String, dynamic>>> loadData() async {
         "Nom": etu["nom"],
         "Sexe": etu["sexe"],
         "ID": etu["id"],
+        "bdsm": etu["bdsm"],
         "Actions": etuActions, // Liste des actions associées
       };
     }).toList();
@@ -168,9 +170,15 @@ Future<String> getImageEtu(int idEtu) async {
 
     // Choisir l'image en fonction du nombre d'actions "E" ou "H"
     if (countE >= countH) {
+      if(etudiant["bdsm"]){
+        return sexe == "M" ? "assets/images/angry.png" : "assets/images/grognasse.png";
+      }
       // Si le nombre d'actions "E" est supérieur ou égal au nombre d'actions "H"
       return sexe == "M" ? "assets/images/heureux.png" : "assets/images/heureuse.png";
     } else {
+      if(etudiant["bdsm"]){
+        return sexe == "M" ? "assets/images/heureux.png" : "assets/images/heureuse.png";
+      }
       // Si le nombre d'actions "H" est supérieur au nombre d'actions "E"
       return sexe == "M" ? "assets/images/angry.png" : "assets/images/grognasse.png";
     }
@@ -180,6 +188,7 @@ Future<String> getImageEtu(int idEtu) async {
   }
 }
 
+// pour supprimer le fichier de data si jamais il est rempli de nimp / bug
 Future<void> deleteFile() async {
   final directory = await getApplicationDocumentsDirectory();
   final file = File('${directory.path}/data.json');
