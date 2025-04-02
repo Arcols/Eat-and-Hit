@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:eat_and_hit/Vue/DetailsEleves.dart';
 import 'package:eat_and_hit/Widgets/HitWidget.dart';
 import 'package:eat_and_hit/Widgets/EatWidget.dart';
+import 'Vue/addEtudiantPage.dart';
 import 'fonctions/dataFonctions.dart';
 import 'Vue/MonCompte.dart';
 
@@ -50,14 +51,10 @@ class _ContactListPageState extends State<ContactListPage> {
   void updateState() {
     loadData().then((loadedData) {
       setState(() {
-        // charger les données à l'appui sur un bouton
+        // charger les données du tableau
         data = loadedData;
       });
     });
-  }
-
-  void addEtudiant() {
-    // Fonction pour récupérer des données (ajouter la logique ici)
   }
 
   @override
@@ -65,6 +62,25 @@ class _ContactListPageState extends State<ContactListPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Eat & Hit"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.add_circle),
+            onPressed: () async {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AddEtudiantPage(
+                    onEtudiantAjoute: () {
+                      updateState();
+                    },
+                  ),
+                ),
+              );
+              await Future.delayed(Duration(milliseconds: 300)); // temps d'attente pour que l'étudiant s'affiche sur la liste
+              updateState();
+            },
+          ),
+        ],
       ),
       drawer: Drawer( // Menu latéral
         child: ListView(
