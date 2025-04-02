@@ -6,9 +6,14 @@ class MonCompte extends StatefulWidget {
   _MonCompteState createState() => _MonCompteState();
 }
 
+
+
 class _MonCompteState extends State<MonCompte> {
   int totalNourri = 0;
   int totalFrappe = 0;
+  int etuHeureux = 0;
+  int etuPasHeureux = 0;
+  String statutUser = "";
 
   @override
   void initState() {
@@ -19,13 +24,19 @@ class _MonCompteState extends State<MonCompte> {
   Future<void> _loadStats() async {
     List<Map<String, dynamic>> etudiants = await loadData();
 
-    int nourri = 0;
-    int frappe = 0;
+    int nourri = await getTotalEat();
+    int frappe = await getTotalHit();
+    int content = await getNombreEtuHeureux();
+    int nombreEtu = await getNombreEtu();
+    String etat = await getStatutUser();
 
 
     setState(() {
       totalNourri = nourri;
       totalFrappe = frappe;
+      etuHeureux =content;
+      etuPasHeureux=nombreEtu-content;
+      statutUser = etat;
     });
   }
 
@@ -37,14 +48,16 @@ class _MonCompteState extends State<MonCompte> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Total de nourritures données : $totalNourri", style: TextStyle(fontSize: 18)),
-            SizedBox(height: 10),
-            Text("Total de frappes effectuées : $totalFrappe", style: TextStyle(fontSize: 18)),
+            Text("$statutUser ", style: TextStyle(fontSize: 26),textAlign: TextAlign.center),
+            SizedBox(height: 50),
+            Text("Nombre de pains (nourriture) donnés : $totalNourri fois", style: TextStyle(fontSize: 18)),
             SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _loadStats, // Recharge les stats manuellement
-              child: Text("Rafraîchir les stats"),
-            ),
+            Text("Nombre de pains (coups) donnés : $totalFrappe fois", style: TextStyle(fontSize: 18)),
+            SizedBox(height: 20),
+            Text("Nombre d'étudiants contents : $etuHeureux", style: TextStyle(fontSize: 18)),
+            SizedBox(height: 20),
+            Text("Nombre d'étudiants pas contents : $etuPasHeureux", style: TextStyle(fontSize: 18)),
+            SizedBox(height: 20),
           ],
         ),
       ),

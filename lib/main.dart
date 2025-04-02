@@ -56,6 +56,7 @@ class _ContactListPageState extends State<ContactListPage> {
     });
   }
 
+
   void addEtudiant() {
     // Fonction pour récupérer des données (ajouter la logique ici)
   }
