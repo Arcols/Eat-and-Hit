@@ -79,36 +79,112 @@ class _DetailselevesState extends State<Detailseleves> {
     return Scaffold(
       appBar: AppBar(
         title: Text("${etudiant["Nom"]} ${etudiant["Prenom"]}"),
-        actions: [
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/appbar_background.jpg"),
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        actions: MediaQuery.of(context).orientation == Orientation.portrait // Récupérer l'orientation de l'écran
+            ? [
           EatWidget(etudiant, onUpdate: _handleEat),
           HitWidget(etudiant, onUpdate: _handleHit),
+        ]
+            : null, // Pas d'actions en paysage
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+          image: AssetImage("assets/images/background.jpg"),
+          fit: BoxFit.cover,
+          ),
+        ),
+      child: OrientationBuilder(
+          builder: (context, orientation) { //builder est une fonction qui prend en paramètre le context et l'orientation.
+            if (orientation == Orientation.portrait) {
+              return _buildPortraitLayout();
+            } else {
+              return _buildLandscapeLayout();
+            }
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPortraitLayout(){
+    return Padding(
+      padding: EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          SizedBox(height: 20),
+          Center(
+            child: CircleAvatar(
+              radius: 80,
+              backgroundColor: Colors.grey,
+              backgroundImage: AssetImage(imagePath),
+            ),
+          ),
+          SizedBox(height: 20),
+          Text(
+            "A été nourri ${getNbFoisNourri()} fois",
+            style: TextStyle(fontSize: 18),
+          ),
+          SizedBox(height: 10),
+          Text(
+            "A été frappé ${getNbFoisFrappe()} fois",
+            style: TextStyle(fontSize: 18),
+          ),
         ],
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(height: 20),
-            Center(
+    );
+  }
+
+  Widget _buildLandscapeLayout(){
+    return Padding(
+      padding: EdgeInsets.all(16.0),
+      child: Row(
+        children: <Widget>[
+          // Partie Image (50% de l'écran)
+          Expanded(
+            flex: 2,
+            child: Center(
               child: CircleAvatar(
-                radius: 80,
+                radius: MediaQuery.of(context).size.width * 0.15, // Taille adaptative
                 backgroundColor: Colors.grey,
                 backgroundImage: AssetImage(imagePath),
               ),
             ),
-            SizedBox(height: 20),
-            Text(
-              "A été nourri ${getNbFoisNourri()} fois",
-              style: TextStyle(fontSize: 18),
+          ),
+          // Partie Texte (50% de l'écran)
+          Expanded(
+            flex: 1,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "A été nourri ${getNbFoisNourri()} fois",
+                  style: TextStyle(fontSize: 18),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  "A été frappé ${getNbFoisFrappe()} fois",
+                  style: TextStyle(fontSize: 18),
+                ),
+                Row(
+                  children: [
+                    EatWidget(etudiant, onUpdate: _handleEat,size:70),
+                    HitWidget(etudiant, onUpdate: _handleHit,size:70),
+                  ],
+                )
+              ],
             ),
-            SizedBox(height: 10),
-            Text(
-              "A été frappé ${getNbFoisFrappe()} fois",
-              style: TextStyle(fontSize: 18),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

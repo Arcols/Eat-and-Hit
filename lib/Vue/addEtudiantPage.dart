@@ -14,8 +14,24 @@ class AddEtudiantPage extends StatelessWidget{
     return Scaffold(
         appBar: AppBar(
         title: Text("Ajouter un étudiant"),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/appbar_background.jpg"),
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
       ),
-      body: ZoneSaisie(onEtudiantAjoute: onEtudiantAjoute),
+    body: Container(
+      decoration: BoxDecoration(
+      image: DecorationImage(
+        image: AssetImage("assets/images/background.jpg"),
+        fit: BoxFit.cover,
+        ),
+      ),
+      child: ZoneSaisie(onEtudiantAjoute: onEtudiantAjoute),
+      ),
     );
   }
 }
@@ -51,6 +67,8 @@ class _ZoneSaisieState extends State<ZoneSaisie> {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Colors.transparent,
+      elevation: 0,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

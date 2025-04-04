@@ -69,6 +69,14 @@ class _ContactListPageState extends State<ContactListPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Eat & Hit"),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/appbar_background.jpg"), // 🖼 Image de fond
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add_circle),
@@ -116,23 +124,31 @@ class _ContactListPageState extends State<ContactListPage> {
           ],
         ),
       ),
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            child: Container(
-              child: ListView.builder( // construit la liste dynamiquement en fonction du nombre d'étudiants
-                itemCount: data.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return LigneEleve(
-                    data: data,
-                    index: index,
-                    onUpdate: updateState,
-                  );
-                },
+      body: Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/images/background.jpg"), // 🖼 Image de fond
+          fit: BoxFit.cover, // 🔥 Couvre tout l'écran
+        ),
+      ),
+      child: Column(
+          children: <Widget>[
+            Expanded(
+              child: Container(
+                child: ListView.builder( // construit la liste dynamiquement en fonction du nombre d'étudiants
+                  itemCount: data.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return LigneEleve(
+                      data: data,
+                      index: index,
+                      onUpdate: updateState,
+                    );
+                  },
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
