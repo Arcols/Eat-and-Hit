@@ -2,23 +2,23 @@
   "etudiants": [
     {
       "id": 1,
-      "nom": "Dupont",
-      "prenom": "Jean",
+      "nom": "Blateau",
+      "prenom": "Indi",
       "sexe": "M",
       "bdsm": false
     },
     {
       "id": 2,
-      "nom": "Martin",
-      "prenom": "Sophie",
-      "sexe": "W",
+      "nom": "Colson",
+      "prenom": "Arthur",
+      "sexe": "M",
       "bdsm": false
     },
     {
       "id": 3,
-      "nom": "Colson",
-      "prenom": "Arthur",
-      "sexe": "M",
+      "nom": "Celeste",
+      "prenom": "Madeline",
+      "sexe": "W",
       "bdsm": false
     }
   ],
