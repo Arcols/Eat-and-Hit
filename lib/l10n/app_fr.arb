@@ -10,6 +10,7 @@
   "moncompte_etat_unpeugentil" : "Vous appréciez très peu d'étudiants ! La nourriture peu se partager !",
   "moncompte_etat_pasgentildutout" : "Vous aimez vraiment pas les étudiants, il existe d'autres métiers vous savez ?",
   "moncompte_etat_supergentil": "Ce métier est vraiment fait pour vous, vous appréciez vraiment vos étudiants !",
+  "moncompte_etat_normal": "Tout est équilibré, ça en devient suspect",
   "moncompte_etat_vide": "Rien ne s'est passé pour l'instant ...",
   "main_etudiant_ajoute" : "L'étudiant {name} a bien été ajouté",
   "main_menu": "Menu",

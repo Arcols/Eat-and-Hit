@@ -322,6 +322,8 @@ Future<String> getStatutUser(AppLocalizations loc) async{
     return loc.moncompte_etat_pasgentildutout;
   } else if (nbHit<nbEat && etuContent<etuPasContent){
     return loc.moncompte_etat_supergentil;
+  } else if (etuPasContent==etuContent){
+    return loc.moncompte_etat_normal;
   } else {
     return loc.moncompte_etat_vide;
   }
