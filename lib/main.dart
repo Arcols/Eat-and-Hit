@@ -177,13 +177,14 @@ class _LigneEleveState extends State<LigneEleve> {
   Widget build(BuildContext context) {
     return ListTile(
       leading: InkWell(
-        onTap: () {
-          Navigator.push(
+        onTap: () async {
+          await Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => Detailseleves(data[index],widget.onUpdate),
+              builder: (context) => Detailseleves(data[index], widget.onUpdate),
             ),
           );
+          _loadImage(); // recharge l’image quand on revient sur la page
         },
         child: CircleAvatar(
           backgroundColor: Colors.grey,

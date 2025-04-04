@@ -39,7 +39,7 @@ Future<void> addAction(String action, DateTime date, int idEtu) async {
 
     // Réécrire le contenu mis à jour dans le fichier JSON
     await file.writeAsString(jsonEncode(jsonData));
-    print(directory.path);
+
     print("Nouvelle action ajoutée !");
   } catch (e) {
     print("Erreur : $e");
@@ -162,9 +162,6 @@ Future<String> getImageEtu(int idEtu) async {
     // Compter le nombre d'actions "E" et "H"
     int countE = actionsEtu.where((action) => action["action"] == "E").length;
     int countH = actionsEtu.where((action) => action["action"] == "H").length;
-    print(countH);
-    print(countE);
-
     // Récupérer le sexe de l'étudiant
     String sexe = etudiant["sexe"];
 
@@ -280,8 +277,14 @@ Future<int> getNombreEtuHeureux() async {
       int countH = actionsEtu.where((action) => action["action"] == "H").length;
 
       // L'étudiant est heureux si le nombre de "E" est supérieur ou égal à "H"
-      if (countE >= countH) {
-        happyStudents++;
+      if (etudiant["bdsm"]) {
+        if (countE <= countH) {
+          happyStudents++;
+        }
+      } else {
+        if (countE >= countH) {
+          happyStudents++;
+        }
       }
     }
 

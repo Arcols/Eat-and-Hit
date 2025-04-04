@@ -65,7 +65,7 @@ class _DetailselevesState extends State<Detailseleves> {
     setState(() {
       // Ajouter l'action "H" et mettre à jour immédiatement l'interface
       etudiant["Actions"].add({"action": "H", "date": DateTime.now().toString()});
-      imagePath = "assets/images/loading.png"; // Image temporaire pendant le chargement
+      imagePath = "assets/images/default.png"; // Image temporaire pendant le chargement
     });
 
     widget.onUpdate(); // Met à jour la liste principale
