@@ -116,38 +116,51 @@ class _ContactListPageState extends State<ContactListPage> {
           ),
         ],
       ),
-      drawer: Drawer( // Menu latéral
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-              decoration: BoxDecoration(color: Colors.blue),
-              child: Text("Menu", style: TextStyle(color: Colors.white, fontSize: 24)),
+      drawer: Drawer(
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/appbar_background.jpg"), // ton image de fond
+              fit: BoxFit.cover,
             ),
-            ListTile(
-              leading: Icon(Icons.person),
-              title: Text("Mon Compte"),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MonCompte()),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.settings),
-              title: Text("Paramètres"),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Settings()),
-                );
-              },
-            ),
-
-          ],
+          ),
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.transparent, // Important pour voir l'image derrière
+                ),
+                child: Text(
+                  "Menu",
+                  style: TextStyle(color: Colors.white, fontSize: 24),
+                ),
+              ),
+              ListTile(
+                leading: Icon(Icons.person, color: Colors.white),
+                title: Text("Mon Compte", style: TextStyle(color: Colors.white)),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MonCompte()),
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.settings, color: Colors.white),
+                title: Text("Paramètres", style: TextStyle(color: Colors.white)),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Settings()),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
+
       body: Container(
       decoration: BoxDecoration(
         image: DecorationImage(
