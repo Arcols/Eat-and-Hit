@@ -1,10 +1,30 @@
 {
-  "accountTitle": "My Account",
-  "@accountTitle": {
-    "description": "Title of the My Account page"
-  },
-  "totalFoodGiven": "Total food given: {count} times",
-  "totalHitsGiven": "Total hits given: {count} times",
-  "happyStudents": "Number of happy students: {count}",
-  "unhappyStudents": "Number of unhappy students: {count}"
+  "moncompte_titrepage": "My Account",
+  "moncompte_totalFoodGiven": "Total lunch given: {count} times",
+  "moncompte_totalHitsGiven": "Total punch given: {count} times",
+  "moncompte_happyStudents": "Number of happy students: {count}",
+  "moncompte_unhappyStudents": "Number of unhappy students: {count}",
+  "moncompte_etat_gentil": "You are kindness incarnate! Stay like that! (or not...)",
+  "moncompte_etat_pasgentil": "You are pure evil! HAHAHA!",
+  "moncompte_etat_passigentil": "You keep attacking certain students! It's not nice to be mean!",
+  "moncompte_etat_unpeugentil": "You appreciate very few students! Food can be shared!",
+  "moncompte_etat_pasgentildutout": "You really don't like students. There are other jobs, you know?",
+  "moncompte_etat_supergentil": "This job is truly made for you, you really appreciate your students!",
+  "moncompte_etat_vide": "Nothing has happened yet...",
+  "main_etudiant_ajoute": "The student {name} has been successfully added",
+  "main_menu": "Menu",
+  "main_moncompte": "My Account",
+  "details_eleves_nbfoisnourri": "Has been fed {count} times :)",
+  "details_eleves_nbfoisfrappe": "Has been hit {count} times :(",
+  "parametres_credit": "Credits",
+  "parametres_devpar": "Developed by Arthur Colson & Indi Blateau",
+  "add_etudiant_titre": "Add a student",
+  "add_etudiant_homme": "Male",
+  "add_etudiant_femme": "Female",
+  "add_etudiant_nom": "Last name",
+  "add_etudiant_prenom": "First name",
+  "add_etudiant_aimesefairetaper": "Your student likes to be hit",
+  "add_etudiant_aimepasefairetaper": "Your student doesn't like to be hit",
+  "add_etudiant_snackbar_error": "Please enter the student's first and last name!",
+  "add_etudiant_addbutton": "Add the student !"
 }

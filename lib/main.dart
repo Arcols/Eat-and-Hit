@@ -11,6 +11,7 @@ import 'fonctions/dataFonctions.dart';
 import 'Vue/MonCompte.dart';
 import 'Vue/Settings.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -71,14 +72,9 @@ class _EtuListPageState extends State<EtuListPage> {
   }
 
 
-
-  void addEtudiant() {
-    // Fonction pour récupérer des données (ajouter la logique ici)
-  }
-
-
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
         title: Text("Eat & Hit"),
@@ -107,7 +103,7 @@ class _EtuListPageState extends State<EtuListPage> {
               await Future.delayed(Duration(milliseconds: 300)); // temps d'attente pour que l'étudiant s'affiche sur la liste
               updateState();
               var snackBar = SnackBar(
-                content: Text('L\'étudiant '+nomprenom+' a bien été ajouté'),
+                content: Text(loc.main_etudiant_ajoute(nomprenom)),
                 backgroundColor: Colors.grey,
                 duration: const Duration(seconds: 2),
               );
@@ -132,13 +128,13 @@ class _EtuListPageState extends State<EtuListPage> {
                   color: Colors.transparent, // Important pour voir l'image derrière
                 ),
                 child: Text(
-                  "Menu",
+                  loc.main_menu,
                   style: TextStyle(color: Colors.white, fontSize: 24),
                 ),
               ),
               ListTile(
                 leading: Icon(Icons.person, color: Colors.white),
-                title: Text("Mon Compte", style: TextStyle(color: Colors.white)),
+                title: Text(loc.main_moncompte, style: TextStyle(color: Colors.white)),
                 onTap: () {
                   Navigator.push(
                     context,
@@ -148,7 +144,7 @@ class _EtuListPageState extends State<EtuListPage> {
               ),
               ListTile(
                 leading: Icon(Icons.info, color: Colors.white),
-                title: Text("Credits", style: TextStyle(color: Colors.white)),
+                title: Text(loc.parametres_credit, style: TextStyle(color: Colors.white)),
                 onTap: () {
                   Navigator.push(
                     context,

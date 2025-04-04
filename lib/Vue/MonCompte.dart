@@ -27,7 +27,7 @@ class _MonCompteState extends State<MonCompte> {
     int frappe = await getTotalHit();
     int content = await getNombreEtuHeureux();
     int nombreEtu = await getNombreEtu();
-    String etat = await getStatutUser();
+    String etat = await getStatutUser(AppLocalizations.of(context)!);
 
 
     setState(() {
@@ -44,7 +44,7 @@ class _MonCompteState extends State<MonCompte> {
     final loc = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        title: Text(loc.accountTitle),
+        title: Text(loc.moncompte_titrepage),
         flexibleSpace: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
@@ -66,13 +66,13 @@ class _MonCompteState extends State<MonCompte> {
             children: [
               Text("$statutUser ", style: TextStyle(fontSize: 26),textAlign: TextAlign.center),
               SizedBox(height: 50),
-              Text("Nombre de pains (nourriture) donnés : $totalNourri fois", style: TextStyle(fontSize: 18)),
+              Text(loc.moncompte_totalFoodGiven(totalNourri), style: TextStyle(fontSize: 18)),
               SizedBox(height: 20),
-              Text("Nombre de pains (coups) donnés : $totalFrappe fois", style: TextStyle(fontSize: 18)),
+              Text(loc.moncompte_totalHitsGiven(totalFrappe), style: TextStyle(fontSize: 18)),
               SizedBox(height: 20),
-              Text("Nombre d'étudiants contents : $etuHeureux", style: TextStyle(fontSize: 18)),
+              Text(loc.moncompte_happyStudents(etuHeureux), style: TextStyle(fontSize: 18)),
               SizedBox(height: 20),
-              Text("Nombre d'étudiants pas contents : $etuPasHeureux", style: TextStyle(fontSize: 18)),
+              Text(loc.moncompte_unhappyStudents(etuPasHeureux), style: TextStyle(fontSize: 18)),
               SizedBox(height: 20),
             ],
           ),

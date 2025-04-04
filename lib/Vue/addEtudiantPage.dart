@@ -2,6 +2,7 @@ import 'package:eat_and_hit/fonctions/dataFonctions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddEtudiantPage extends StatelessWidget{
 
@@ -11,9 +12,10 @@ class AddEtudiantPage extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context)!;
     return Scaffold(
         appBar: AppBar(
-        title: Text("Ajouter un étudiant"),
+        title: Text(loc.add_etudiant_titre),
         flexibleSpace: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
@@ -30,7 +32,7 @@ class AddEtudiantPage extends StatelessWidget{
         fit: BoxFit.cover,
         ),
       ),
-      child: ZoneSaisie(onEtudiantAjoute: onEtudiantAjoute),
+      child: ZoneSaisie(onEtudiantAjoute: onEtudiantAjoute, loc:loc),
       ),
     );
   }
@@ -41,13 +43,13 @@ class ZoneSaisie extends StatefulWidget {
   final VoidCallback onEtudiantAjoute;
   final TextEditingController prenomController = TextEditingController();
   final TextEditingController nomController = TextEditingController();
-
+  final AppLocalizations loc;
   ZoneSaisie({
     required this.onEtudiantAjoute,
-    super.key,
+    super.key, required this.loc
   });
 
-  State<ZoneSaisie> createState() => _ZoneSaisieState();
+  State<ZoneSaisie> createState() => _ZoneSaisieState(loc);
 
 }
 enum genre {M,W}
@@ -55,6 +57,7 @@ enum genre {M,W}
 class _ZoneSaisieState extends State<ZoneSaisie> {
   genre? _genre = genre.M;
   bool bdsm = false;
+  final AppLocalizations loc;
   final ButtonStyle _buttonStyle = ElevatedButton.styleFrom(
     foregroundColor: Colors.white,
     backgroundColor: Colors.blue,
@@ -64,6 +67,8 @@ class _ZoneSaisieState extends State<ZoneSaisie> {
       borderRadius: BorderRadius.all(Radius.circular(2)),
     ),
   );
+
+  _ZoneSaisieState(this.loc);
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -75,24 +80,22 @@ class _ZoneSaisieState extends State<ZoneSaisie> {
           children: <Widget>[
             const SizedBox(height: 10),
 
-            // Champ de saisie pour le poids
             TextField(
               controller: widget.nomController ,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Nom",
-                labelStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              decoration: InputDecoration(
+                border: const OutlineInputBorder(),
+                labelText: loc.add_etudiant_nom,
+                labelStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),
 
             const SizedBox(height: 30),
-            // Champ de saisie pour la taille
             TextField(
               controller: widget.prenomController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Prénom",
-                labelStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              decoration: InputDecoration(
+                border: const OutlineInputBorder(),
+                labelText: loc.add_etudiant_prenom,
+                labelStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),
             const SizedBox(height: 20),
@@ -111,7 +114,7 @@ class _ZoneSaisieState extends State<ZoneSaisie> {
                       },
                     ),
                     Text(
-                      'Homme',
+                      loc.add_etudiant_homme,
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: _genre == genre.M ? FontWeight.bold : FontWeight.normal,
@@ -132,7 +135,7 @@ class _ZoneSaisieState extends State<ZoneSaisie> {
                       },
                     ),
                     Text(
-                      'Femme',
+                      loc.add_etudiant_femme,
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: _genre == genre.W ? FontWeight.bold : FontWeight.normal,
@@ -149,8 +152,8 @@ class _ZoneSaisieState extends State<ZoneSaisie> {
                 Expanded( // Adaptation des débordements
                   child: Text(
                     bdsm
-                        ? 'Votre étudiant aime se faire frapper'
-                        : 'Votre étudiant n\'aime pas se faire frapper',
+                        ? loc.add_etudiant_aimesefairetaper
+                        : loc.add_etudiant_aimepasefairetaper,
                     style: TextStyle(fontSize: 18),
                     textAlign: TextAlign.center,
                     softWrap: true, // retour à la ligne automatique
@@ -173,7 +176,7 @@ class _ZoneSaisieState extends State<ZoneSaisie> {
               onPressed: () {
                 if(widget.nomController.text == '' || widget.prenomController.text ==''){
                   var snackBar = SnackBar(
-                    content: Text('Veuillez renseigner le nom et le prénom de l\'étudiant !'),
+                    content: Text(loc.add_etudiant_snackbar_error),
                     backgroundColor: Colors.grey,
                     duration: const Duration(seconds: 2),
                   );
@@ -185,7 +188,7 @@ class _ZoneSaisieState extends State<ZoneSaisie> {
                   Navigator.pop(context,widget.nomController.text+' '+widget.prenomController.text);
                 }
               },
-              child: Text('Ajouter l\'étudiant !'),
+              child: Text(loc.add_etudiant_addbutton),
             )
           ],
         ),

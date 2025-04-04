@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -20,9 +21,10 @@ class _Settings extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Credits"),
+        title: Text(loc.parametres_credit),
         flexibleSpace: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
@@ -44,7 +46,7 @@ class _Settings extends State<Settings> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 30),
-              Text("Développé par Arthur Colson & Indi Blateau")
+              Text(loc.parametres_devpar)
             ],
           ),
         )

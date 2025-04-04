@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:eat_and_hit/Widgets/HitWidget.dart';
 import 'package:eat_and_hit/Widgets/EatWidget.dart';
 import '../fonctions/dataFonctions.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Detailseleves extends StatefulWidget {
   final Map<String, dynamic> initialEtu;
@@ -115,6 +116,7 @@ class _DetailselevesState extends State<Detailseleves> {
   }
 
   Widget _buildPortraitLayout(){
+    final loc = AppLocalizations.of(context)!;
     return Padding(
       padding: EdgeInsets.all(16.0),
       child: Column(
@@ -130,12 +132,12 @@ class _DetailselevesState extends State<Detailseleves> {
           ),
           SizedBox(height: 20),
           Text(
-            "A été nourri ${getNbFoisNourri()} fois",
+            loc.details_eleves_nbfoisnourri(getNbFoisNourri()),
             style: TextStyle(fontSize: 18),
           ),
           SizedBox(height: 10),
           Text(
-            "A été frappé ${getNbFoisFrappe()} fois",
+            loc.details_eleves_nbfoisfrappe(getNbFoisFrappe()),
             style: TextStyle(fontSize: 18),
           ),
         ],
@@ -144,6 +146,7 @@ class _DetailselevesState extends State<Detailseleves> {
   }
 
   Widget _buildLandscapeLayout(){
+    final loc = AppLocalizations.of(context)!;
     return Padding(
       padding: EdgeInsets.all(16.0),
       child: Row(
@@ -167,12 +170,12 @@ class _DetailselevesState extends State<Detailseleves> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "A été nourri ${getNbFoisNourri()} fois",
+                  loc.details_eleves_nbfoisnourri(getNbFoisNourri()),
                   style: TextStyle(fontSize: 18),
                 ),
                 SizedBox(height: 10),
                 Text(
-                  "A été frappé ${getNbFoisFrappe()} fois",
+                  loc.details_eleves_nbfoisfrappe(getNbFoisFrappe()),
                   style: TextStyle(fontSize: 18),
                 ),
                 Row(

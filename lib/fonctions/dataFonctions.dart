@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 /// Écriture du contenu de data.json dans un fichier local du téléphone
@@ -40,7 +41,6 @@ Future<void> addAction(String action, DateTime date, int idEtu) async {
     // Réécrire le contenu mis à jour dans le fichier JSON
     await file.writeAsString(jsonEncode(jsonData));
 
-    print("Nouvelle action ajoutée !");
   } catch (e) {
     print("Erreur : $e");
   }
@@ -69,8 +69,6 @@ Future<void> addEtudiant(String nom, String prenom, String genre,bool bdsm) asyn
 
     // Réécrire le contenu mis à jour dans le fichier JSON
     await file.writeAsString(jsonEncode(jsonData));
-    print(directory.path);
-    print("Nouvelle action ajoutée !");
   } catch (e) {
     print("Erreur : $e");
   }
@@ -99,7 +97,6 @@ Future<List<Map<String, dynamic>>> loadData() async {
 
     // Vérifie si le fichier existe avant de tenter de le lire
     if (!file.existsSync()) {
-      print("Erreur : fichier data.json introuvable !");
       return [];
     }
 
@@ -126,7 +123,6 @@ Future<List<Map<String, dynamic>>> loadData() async {
 
     return formattedData;
   } catch (e) {
-    print("Erreur lors du chargement des données : $e");
     return [];
   }
 }
@@ -138,7 +134,6 @@ Future<String> getImageEtu(int idEtu) async {
     final directory = await getApplicationDocumentsDirectory();
     final file = File('${directory.path}/data.json'); // Utilisation du bon répertoire
     if (!file.existsSync()) {
-      print("Fichier data.json introuvable !");
       return "assets/images/default.png"; // Image par défaut si le fichier n'existe pas
     }
 
@@ -152,7 +147,6 @@ Future<String> getImageEtu(int idEtu) async {
 
     // Vérifier si l'étudiant existe
     if (etudiant == null) {
-      print("Étudiant non trouvé !");
       return "assets/images/default.png"; // Image par défaut si l'étudiant n'existe pas
     }
 
@@ -180,7 +174,6 @@ Future<String> getImageEtu(int idEtu) async {
       return sexe == "M" ? "assets/images/angry.png" : "assets/images/grognasse.png";
     }
   } catch (e) {
-    print("Erreur lors de la récupération de l'image : $e");
     return "assets/images/default.png"; // Image par défaut en cas d'erreur
   }
 }
@@ -192,7 +185,6 @@ Future<void> deleteFile() async {
 
   if (await file.exists()) {
     await file.delete();
-    print("Fichier supprimé avec succès !");
   } else {
     print("Le fichier n'existe pas.");
   }
@@ -206,7 +198,6 @@ Future<int> getTotalEat() async {
     final directory = await getApplicationDocumentsDirectory();
     final file = File('${directory.path}/data.json'); // Utilisation du bon répertoire
     if (!file.existsSync()) {
-      print("Fichier data.json introuvable !");
       return -1;
     }
 
@@ -219,7 +210,6 @@ Future<int> getTotalEat() async {
     int countE = actionsEtu.where((action) => action["action"] == "E").length;
     return countE;
   } catch (e) {
-    print("Erreur lors de la récupération de l'image : $e");
     return -1;
   }
 }
@@ -229,7 +219,6 @@ Future<int> getTotalHit() async {
     final directory = await getApplicationDocumentsDirectory();
     final file = File('${directory.path}/data.json'); // Utilisation du bon répertoire
     if (!file.existsSync()) {
-      print("Fichier data.json introuvable !");
       return -1;
     }
 
@@ -242,7 +231,6 @@ Future<int> getTotalHit() async {
     int countH = actionsEtu.where((action) => action["action"] == "H").length;
     return countH;
   } catch (e) {
-    print("Erreur lors de la récupération de l'image : $e");
     return -1;
   }
 }
@@ -253,7 +241,6 @@ Future<int> getNombreEtuHeureux() async {
     final file = File('${directory.path}/data.json');
 
     if (!file.existsSync()) {
-      print("Fichier data.json introuvable !");
       return -1;
     }
 
@@ -290,7 +277,6 @@ Future<int> getNombreEtuHeureux() async {
 
     return happyStudents;
   } catch (e) {
-    print("Erreur lors du calcul des étudiants heureux : $e");
     return -1;
   }
 }
@@ -302,7 +288,6 @@ Future<int> getNombreEtu() async {
     final file = File('${directory.path}/data.json');
 
     if (!file.existsSync()) {
-      print("Fichier data.json introuvable !");
       return -1;
     }
 
@@ -314,32 +299,31 @@ Future<int> getNombreEtu() async {
 
     return etudiants.length;
   } catch (e) {
-    print("Erreur lors du comptage des étudiants : $e");
     return -1;
   }
 }
 
 
-Future<String> getStatutUser() async{
+Future<String> getStatutUser(AppLocalizations loc) async{
   int nbEat= await getTotalEat();
   int nbHit= await getTotalHit();
   int etuContent = await getNombreEtuHeureux();
   int nbEtu = await getNombreEtu();
   int etuPasContent = nbEtu-etuContent;
   if (nbEat>1 && nbHit==0){
-    return "Vous avez la bonté incarnée ! Restez comme ça ! (ou pas...)";
+    return loc.moncompte_etat_gentil;
   } else if (nbHit>1 && nbEat==0){
-    return "Vous êtes le mal incarné ! HIHIHI !";
+    return loc.moncompte_etat_pasgentil;
   } else if (nbHit>nbEat && etuContent>etuPasContent){
-    return "Vous vous acharnez sur certains étudiants ! C'est pas gentil d'être méchant !";
+    return loc.moncompte_etat_passigentil;
   } else if (nbHit<nbEat && etuContent<etuPasContent){
-    return "Vous appréciez très peu d'étudiants ! La nourriture peu se partager !";
+    return loc.moncompte_etat_unpeugentil;
   } else if (nbHit>nbEat && etuContent<etuPasContent){
-    return "Vous aimez vraiment pas les étudiants, il existe d'autres métiers vous savez ?";
+    return loc.moncompte_etat_pasgentildutout;
   } else if (nbHit<nbEat && etuContent<etuPasContent){
-    return "Ce métier est vraiment fait pour vous, vous appréciez vraiment vos étudiants !";
+    return loc.moncompte_etat_supergentil;
   } else {
-    return "Rien ne s'est passé pour l'instant ...";
+    return loc.moncompte_etat_vide;
   }
 }
 

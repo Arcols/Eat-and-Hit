@@ -1,10 +1,30 @@
 {
-  "accountTitle": "Mon Compte",
-  "@accountTitle": {
-    "description": "Titre de la page Mon Compte"
-  },
-  "totalFoodGiven": "Nombre de pains (nourriture) donnés : {count} fois",
-  "totalHitsGiven": "Nombre de pains (coups) donnés : {count} fois",
-  "happyStudents": "Nombre d'étudiants contents : {count}",
-  "unhappyStudents": "Nombre d'étudiants pas contents : {count}"
+  "moncompte_titrepage": "Mon Compte",
+  "moncompte_totalFoodGiven": "Nombre de pains (nourriture) donnés : {count} fois",
+  "moncompte_totalHitsGiven": "Nombre de pains (coups) donnés : {count} fois",
+  "moncompte_happyStudents": "Nombre d'étudiants contents : {count}",
+  "moncompte_unhappyStudents": "Nombre d'étudiants pas contents : {count}",
+  "moncompte_etat_gentil" : "Vous avez la bonté incarnée ! Restez comme ça ! (ou pas...)",
+  "moncompte_etat_pasgentil" : "Vous êtes le mal incarné ! HIHIHI !",
+  "moncompte_etat_passigentil" : "Vous vous acharnez sur certains étudiants ! C'est pas gentil d'être méchant !",
+  "moncompte_etat_unpeugentil" : "Vous appréciez très peu d'étudiants ! La nourriture peu se partager !",
+  "moncompte_etat_pasgentildutout" : "Vous aimez vraiment pas les étudiants, il existe d'autres métiers vous savez ?",
+  "moncompte_etat_supergentil": "Ce métier est vraiment fait pour vous, vous appréciez vraiment vos étudiants !",
+  "moncompte_etat_vide": "Rien ne s'est passé pour l'instant ...",
+  "main_etudiant_ajoute" : "L'étudiant {name} a bien été ajouté",
+  "main_menu": "Menu",
+  "main_moncompte": "Mon compte",
+  "details_eleves_nbfoisnourri": "A été nourri {count} fois :)",
+  "details_eleves_nbfoisfrappe": "A été frappé {count} fois :(",
+  "parametres_credit": "Crédits",
+  "parametres_devpar": "Développé par Arthur Colson & Indi Blateau",
+  "add_etudiant_titre": "Ajouter un étudiant",
+  "add_etudiant_homme": "Homme",
+  "add_etudiant_femme": "Femme",
+  "add_etudiant_nom": "Nom",
+  "add_etudiant_prenom": "Prénom",
+  "add_etudiant_aimesefairetaper": "Votre étudiant aime se faire frapper",
+  "add_etudiant_aimepasefairetaper": "Votre étudiant n\\'aime pas se faire frapper",
+  "add_etudiant_snackbar_error": "Veuillez renseigner le nom et le prénom de l\\'étudiant !",
+  "add_etudiant_addbutton": "Ajouter l\\'étudiant !"
 }
