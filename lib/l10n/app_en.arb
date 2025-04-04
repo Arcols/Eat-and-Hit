@@ -1,7 +1,10 @@
 {
-  "monCompte": "My Account",
-  "nourritureDonnee": "Number of meals given: {totalNourri} times",
-  "coupsDonnes": "Number of hits given: {totalFrappe} times",
-  "etudiantsContents": "Number of happy students: {etuHeureux}",
-  "etudiantsPasContents": "Number of unhappy students: {etuPasHeureux}"
+  "accountTitle": "My Account",
+  "@accountTitle": {
+    "description": "Title of the My Account page"
+  },
+  "totalFoodGiven": "Total food given: {count} times",
+  "totalHitsGiven": "Total hits given: {count} times",
+  "happyStudents": "Number of happy students: {count}",
+  "unhappyStudents": "Number of unhappy students: {count}"
 }
