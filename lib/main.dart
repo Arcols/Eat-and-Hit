@@ -25,17 +25,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ContactListPage(),
+      home: EtuListPage(),
     );
   }
 }
 
-class ContactListPage extends StatefulWidget {
+class EtuListPage extends StatefulWidget {
   @override
-  _ContactListPageState createState() => _ContactListPageState();
+  _EtuListPageState createState() => _EtuListPageState();
 }
 
-class _ContactListPageState extends State<ContactListPage> {
+class _EtuListPageState extends State<EtuListPage> {
   List<Map<String, dynamic>> data = [];
 
   @override
@@ -135,8 +135,8 @@ class _ContactListPageState extends State<ContactListPage> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.settings, color: Colors.white),
-                title: Text("Paramètres", style: TextStyle(color: Colors.white)),
+                leading: Icon(Icons.info, color: Colors.white),
+                title: Text("Credits", style: TextStyle(color: Colors.white)),
                 onTap: () {
                   Navigator.push(
                     context,

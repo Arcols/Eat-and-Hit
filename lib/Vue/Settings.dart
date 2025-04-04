@@ -8,15 +8,13 @@ class Settings extends StatefulWidget {
 }
 
 class _Settings extends State<Settings> {
-  String _selectedLanguage = 'fr'; // Valeur par défaut
+  String _selectedLanguage = 'fr';
 
   void _changeLanguage(String? value) {
     if (value != null) {
       setState(() {
         _selectedLanguage = value;
       });
-      // Tu peux sauvegarder cette préférence avec SharedPreferences plus tard
-      // Ex: await SharedPreferences.getInstance().then((prefs) => prefs.setString('lang', value));
     }
   }
 
@@ -24,7 +22,7 @@ class _Settings extends State<Settings> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Paramètres"),
+        title: Text("Credits"),
         flexibleSpace: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
@@ -46,27 +44,6 @@ class _Settings extends State<Settings> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 30),
-              Text("Langue", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-
-              DropdownButton<String>(
-                value: _selectedLanguage,
-                items: [
-                  DropdownMenuItem(
-                    value: 'fr',
-                    child: Text('Français'),
-                  ),
-                  DropdownMenuItem(
-                    value: 'en',
-                    child: Text('English'),
-                  ),
-                ],
-                onChanged: _changeLanguage,
-              ),
-
-              const SizedBox(height: 30),
-
-              Text("Crédits", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              const SizedBox(height: 10),
               Text("Développé par Arthur Colson & Indi Blateau")
             ],
           ),
