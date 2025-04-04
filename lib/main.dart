@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:convert';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:eat_and_hit/Vue/DetailsEleves.dart';
@@ -9,6 +10,7 @@ import 'Vue/addEtudiantPage.dart';
 import 'fonctions/dataFonctions.dart';
 import 'Vue/MonCompte.dart';
 import 'Vue/Settings.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,6 +24,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Eat & Hit',
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale('en'),
+        Locale('fr'),
+      ],
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -73,7 +85,7 @@ class _EtuListPageState extends State<EtuListPage> {
         flexibleSpace: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/images/appbar_background.jpg"), // 🖼 Image de fond
+              image: AssetImage("assets/images/appbar_background.jpg"),
               fit: BoxFit.cover,
             ),
           ),
@@ -152,8 +164,8 @@ class _EtuListPageState extends State<EtuListPage> {
       body: Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/images/background.jpg"), // 🖼 Image de fond
-          fit: BoxFit.cover, // 🔥 Couvre tout l'écran
+          image: AssetImage("assets/images/background.jpg"),
+          fit: BoxFit.cover,
         ),
       ),
       child: Column(

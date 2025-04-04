@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import '../fonctions/dataFonctions.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MonCompte extends StatefulWidget {
   @override
   _MonCompteState createState() => _MonCompteState();
 }
-
-
 
 class _MonCompteState extends State<MonCompte> {
   int totalNourri = 0;
@@ -42,9 +41,10 @@ class _MonCompteState extends State<MonCompte> {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Mon Compte"),
+        title: Text(loc.accountTitle),
         flexibleSpace: Container(
           decoration: BoxDecoration(
             image: DecorationImage(

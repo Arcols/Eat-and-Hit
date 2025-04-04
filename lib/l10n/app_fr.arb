@@ -1,7 +1,10 @@
 {
-  "monCompte": "Mon Compte",
-  "nourritureDonnee": "Nombre de pains (nourriture) donnés : {totalNourri} fois",
-  "coupsDonnes": "Nombre de pains (coups) donnés : {totalFrappe} fois",
-  "etudiantsContents": "Nombre d'étudiants contents : {etuHeureux}",
-  "etudiantsPasContents": "Nombre d'étudiants pas contents : {etuPasHeureux}"
+  "accountTitle": "Mon Compte",
+  "@accountTitle": {
+    "description": "Titre de la page Mon Compte"
+  },
+  "totalFoodGiven": "Nombre de pains (nourriture) donnés : {count} fois",
+  "totalHitsGiven": "Nombre de pains (coups) donnés : {count} fois",
+  "happyStudents": "Nombre d'étudiants contents : {count}",
+  "unhappyStudents": "Nombre d'étudiants pas contents : {count}"
 }
