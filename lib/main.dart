@@ -8,6 +8,7 @@ import 'package:eat_and_hit/Widgets/EatWidget.dart';
 import 'Vue/addEtudiantPage.dart';
 import 'fonctions/dataFonctions.dart';
 import 'Vue/MonCompte.dart';
+import 'Vue/Settings.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -121,6 +122,17 @@ class _ContactListPageState extends State<ContactListPage> {
                 );
               },
             ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text("Paramètres"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Settings()),
+                );
+              },
+            ),
+
           ],
         ),
       ),
