@@ -34,6 +34,9 @@ class _MonCompteState extends State<MonCompte> {
     setState(() {
       totalNourri = nourri;
       totalFrappe = frappe;
+      etuHeureux =content;
+      etuPasHeureux=nombreEtu-content;
+      statutUser = etat;
     });
   }
 

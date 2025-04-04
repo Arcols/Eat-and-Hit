@@ -9,8 +9,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
   path_provider: ^2.1.5
-  intl: ^0.18.0
+
+  intl: any
+
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:
@@ -19,6 +24,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true
+
   assets:
     - assets/data.json
     - assets/images/
