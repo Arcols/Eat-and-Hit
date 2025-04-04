@@ -1,0 +1,7 @@
+{
+  "monCompte": "Mon Compte",
+  "nourritureDonnee": "Nombre de pains (nourriture) donnés : {totalNourri} fois",
+  "coupsDonnes": "Nombre de pains (coups) donnés : {totalFrappe} fois",
+  "etudiantsContents": "Nombre d'étudiants contents : {etuHeureux}",
+  "etudiantsPasContents": "Nombre d'étudiants pas contents : {etuPasHeureux}"
+}
