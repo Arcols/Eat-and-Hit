@@ -208,7 +208,7 @@ class LigneEleve extends StatefulWidget {
 class _LigneEleveState extends State<LigneEleve> {
   get data => widget.data;
   get index => widget.index;
-  late String imagePath = "assets/images/prout.png";
+  late String imagePath = "assets/images/default.png";
   @override
   void initState() {
     super.initState();
