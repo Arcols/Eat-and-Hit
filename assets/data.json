@@ -2,15 +2,15 @@
   "etudiants": [
     {
       "id": 1,
-      "nom": "Blateau",
-      "prenom": "Indi",
-      "sexe": "M",
+      "nom": "McNeice",
+      "prenom": "Erin",
+      "sexe": "F",
       "bdsm": false
     },
     {
       "id": 2,
-      "nom": "Colson",
-      "prenom": "Arthur",
+      "nom": "Luis",
+      "prenom": "Vincent",
       "sexe": "M",
       "bdsm": false
     },
