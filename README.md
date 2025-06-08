@@ -29,32 +29,32 @@
 
 Page principale avec la liste des personnages, scores et accès rapide aux actions Eat & Hit.  
 
-![Page d'accueil](/images/pageaccueil.png)
+![Page d'accueil](/images/pageaccueil.jpg)
 
 ### 👤 Profil d'un personnage 🍽️ Récompenses & 🥊 Punitions
 
 Interface d’attribution rapide des récompenses ou punitions.  
 
-![Image du profil d'un personnage](/images/profil_person.png)
+![Image du profil d'un personnage](/images/profil_person.jpg)
 
 ### 🆕 Ajout de personnage
 
 Il est possible d'ajouter de nouveaux personnages
 
-![Image d'ajout de personnage](/images/addperson.png)
+![Image d'ajout de personnage](/images/addperson.jpg)
 
 
 ### 📈 Statistiques
 
 Statistiques montrant les différentes actions faites aux personnages.  
 
-![Image du profil de l'utilisateur](/images/profil_user.png)
+![Image du profil de l'utilisateur](/images/profil_user.jpg)
 
 ### 📖 Traduction
 
 Le texte affiché sur l'application sera différent en fonction de la langue de votre téléphone ! (FR or EN)
 
-![Exemple de traduction](/images/profiltrad.png)
+![Exemple de traduction](/images/profiltrad.jpg)
 
 ---
 
